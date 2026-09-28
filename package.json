@@ -1,0 +1,15 @@
+{
+  "name": "social-workspace",
+  "version": "1.0.0",
+  "description": "A lightweight Electron workspace for manually managing multiple web accounts.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js && node --check services/accountManager.js && node --check services/platformManager.js && node --check services/sessionManager.js && node --check services/workspaceData.js && node --check renderer/script.js && node --check renderer/workspace.js && node --check services/connectors.js && node --check services/workspaceMode.js && node --check renderer/inbox.js && node --check renderer/realWorkspace.js && node --check services/gmail/errors.js && node --check services/gmail/secureStore.js && node --check services/gmail/oauth.js && node --check services/gmail/message.js && node --check services/gmail/gmailService.js && node --check services/meta/metaService.js && node --check renderer/gmail.js && node --check renderer/meta.js",
+    "test": "node --test tests/domain.test.cjs tests/gmail.test.cjs",
+    "test:electron": "electron tests/electron-smoke.cjs"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7"
+  }
+}

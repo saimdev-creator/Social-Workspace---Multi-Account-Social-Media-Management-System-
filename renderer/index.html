@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Workspace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">SW</div><div><strong>Social</strong><span>Workspace</span></div></div>
+      <div class="sidebar-scroll"><nav id="workspace-nav" aria-label="Workspace"></nav>
+      <div class="side-label">PLATFORMS</div>
+      <nav id="platform-nav" aria-label="Platforms"></nav></div>
+      <div class="sidebar-bottom">
+        <label class="demo-toggle"><input type="checkbox" id="demo-mode" checked> <span>Demo Mode <strong id="demo-mode-label">ON</strong></span></label>
+        <button class="side-action" id="add-account-side"><span>＋</span> Add Account</button>
+        <button class="side-action" id="settings-side"><span>⚙</span> Settings</button>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-wrap"><button class="back-home hidden" id="back-home">← Home</button><div><div class="eyebrow">ACCOUNT WORKSPACE</div><h1 id="page-title">Social Workspace</h1></div></div>
+        <div class="top-actions"><button class="icon-btn" id="theme-toggle" title="Toggle light/dark mode">☼</button><button class="primary" id="add-account-top">＋ Add Account</button></div>
+      </header>
+      <section class="browser-toolbar hidden" id="browser-toolbar">
+        <button data-browser="back">←</button><button data-browser="forward">→</button><button data-browser="reload">⟳</button><button data-browser="home">⌂ Home</button><span class="toolbar-divider"></span><button id="messenger-btn" data-browser="messenger" class="messenger hidden">Messenger</button><button data-browser="new-window" class="new-window">↗ Open in New Window</button><span class="current-url" id="current-url"></span>
+      </section>
+      <section class="content" id="content"></section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="modal-backdrop"><div class="modal" id="modal"></div></div>
+  <script src="../services/workspaceData.js"></script>
+  <script src="../services/workspaceMode.js"></script>
+  <script src="script.js"></script>
+  <script src="workspace.js"></script>
+  <script src="inbox.js"></script>
+  <script src="realWorkspace.js"></script>
+  <script src="gmail.js"></script>
+  <script src="meta.js"></script>
+</body>
+</html>

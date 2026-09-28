@@ -1,0 +1,10 @@
+{
+  "accounts": [],
+  "settings": {
+    "theme": "light",
+    "startup": "dashboard",
+    "confirmDelete": true,
+    "rememberLast": true
+  },
+  "lastAccountId": null
+}

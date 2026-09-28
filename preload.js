@@ -1,0 +1,33 @@
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('workspace', {
+  platforms: require('./services/platformManager').platforms,
+  gmailStatus: () => ipcRenderer.invoke('gmail:status'),
+  gmailImportCredentials: () => ipcRenderer.invoke('gmail:importCredentials'),
+  gmailConnect: id => ipcRenderer.invoke('gmail:connect',id),
+  gmailConfirm: (id,confirmationId) => ipcRenderer.invoke('gmail:confirm',{id,confirmationId}),
+  gmailCancel: id => ipcRenderer.invoke('gmail:cancel',id),
+  gmailDisconnect: id => ipcRenderer.invoke('gmail:disconnect',id),
+  metaStatus: platform => ipcRenderer.invoke('meta:status',platform),
+  metaImportCredentials: () => ipcRenderer.invoke('meta:importCredentials'),
+  openWhatsAppExternal: id => ipcRenderer.invoke('whatsapp:external',id),
+  connectorRequest: (kind,accountId,payload={}) => ipcRenderer.invoke('connectors:request',{kind,accountId,payload}),
+  openOriginalConversation: (accountId,messageId) => ipcRenderer.invoke('conversation:openOriginal',{accountId,messageId}),
+  setBrowserVisible: (visible) => ipcRenderer.invoke('browser:visible', visible),
+  onStateChanged: (callback) => ipcRenderer.on('state:changed', (_, state) => callback(state)),
+  getState: () => ipcRenderer.invoke('state:get'),
+  createAccount: (platform, name) => ipcRenderer.invoke('account:create', { platform, name }),
+  renameAccount: (id, name) => ipcRenderer.invoke('account:rename', { id, name }),
+  deleteAccount: (id) => ipcRenderer.invoke('account:delete', id),
+  openAccount: (id) => ipcRenderer.invoke('account:open', { id }),
+  goHome: () => ipcRenderer.invoke('workspace:home'),
+  browserAction: (action) => ipcRenderer.invoke('browser:action', action),
+  setSettings: (settings) => ipcRenderer.invoke('settings:update', settings),
+  clearSession: (id) => ipcRenderer.invoke('session:clear', id),
+  clearAllSessions: () => ipcRenderer.invoke('session:clearAll'),
+  exportAccounts: () => ipcRenderer.invoke('accounts:export'),
+  importAccounts: () => ipcRenderer.invoke('accounts:import'),
+  openExternal: (url) => ipcRenderer.invoke('external:open', url),
+  onBrowserState: (callback) => ipcRenderer.on('browser:state', (_, state) => callback(state)),
+  onError: (callback) => ipcRenderer.on('app:error', (_, message) => callback(message))
+});
